@@ -1,2 +1,2 @@
 # ams-avl-tree
-Projeto Árvore AVL
+Projeto Árvore AVL - Estrutura de Dados
