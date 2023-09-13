@@ -1,12 +1,14 @@
 /* ------------ Funcionalidades ------------- */
 
+void opcaoInexistente();
+
 void menu(short *opcao);
 
 short confirmacao();
 
-short max(short a, short b);
-
 void opcaoInexistente();
+
+short max(short a, short b);
 
 void limparMemoria(Nodo *nodo);
 
@@ -90,13 +92,6 @@ short confirmacao()
     return confirmacao;
 }
 
-// max: Encontra o maior valor passado por parametro.
-
-short max(short a, short b)
-{
-    return (a > b) ? a : b;
-}
-
 // opcaoInexistente: Alerta que a opção informada não existe.
 
 void opcaoInexistente()
@@ -107,12 +102,19 @@ void opcaoInexistente()
     return;
 };
 
+// max: Encontra o maior valor passado por parametro.
+
+short max(short a, short b)
+{
+    return (a > b) ? a : b;
+}
+
 // limparMemoria: Libera os espaços de memória reservados para os nodos da árvore.
 
 void limparMemoria(Nodo *nodo)
 {
 
-    if (nodo != NULL)
+    if (nodo)
     {
         limparMemoria(nodo->filhoEsquerda);
         limparMemoria(nodo->filhoDireita);

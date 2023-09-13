@@ -9,14 +9,14 @@
 #include "struct.h"
 #include "adicionais.c"
 
-//#include "insercao/"
-//#include "fatorBalanceamento/"
-//#include "balanceandoEsquerda/rotacaoSimples"
-//#include "balanceandoDireita/rotacaoSimples"
-//#include "balanceandoEsquerda/rotacaoDupla"
-//#include "balanceandoDireita/rotacaoDupla"
-//#include "remocao/"
-//#include "visitacao/"
+// #include "insercao/insercao.c"
+#include "fatorBalanceamento/fatorBalanceamento.c"
+// #include "balanceamentoEsquerda/rotacaoSimples.c"
+// #include "balanceamentoDireita/rotacaoSimples.c"
+// #include "balanceamentoEsquerda/rotacaoDupla.c"
+// #include "balanceamentoDireita/rotacaoDupla.c"
+#include "remocao/remocao.c"
+#include "visitacao/ordens.c"
 #include "apresentacao/apresentacao.c"
 
 /* -------------------------------------------- */
@@ -83,7 +83,7 @@ int main()
                 printf(" </> Dados alterados.\n");
                 printf(" </> Verificando balanceamento.\n");
                 balancearArvore(&pRaiz);
-                printf(" </> Verificação/balancemaneto concluído.\n");
+                printf(" </> Verificação concluída.\n");
             }
             else
                 printf(" </> Não há espaço de memória disponível!\n");
@@ -108,7 +108,7 @@ int main()
                     printf(" </> Dados alterados.\n");
                     printf(" </> Verificando balanceamento.\n");
                     balancearArvore(&pRaiz);
-                    printf(" </> Verificação/balancemaneto concluído.\n");
+                    printf(" </> Verificação concluída.\n");
                 }
             }
 
@@ -120,7 +120,7 @@ int main()
                 printf(" </> A árvore está vazia!\n");
             else
             {
-                /* Função VISITCAO */ /* Função VISITCAO */ /* Função VISITCAO */ /* Função VISITCAO */ /* Função VISITCAO */
+                /* VISITAÇÃO *//* VISITAÇÃO *//* VISITAÇÃO */
                 printf(" </> Pré-ordem: ");
                 preOrdem(pRaiz);
                 printf("\n");
@@ -199,7 +199,7 @@ int main()
 short verificarArvoreVazia(Nodo *nodo)
 {
 
-    if (nodo != NULL)
+    if (nodo)
         return 0;
 
     else
@@ -221,10 +221,7 @@ Nodo *alocarNodo()
 Nodo *verificarExistenciaNodo(Nodo *nodo, int alvo)
 {
 
-    if (nodo == NULL)
-        return 0;
-
-    else
+    if (nodo)
     {
 
         if (nodo->numeroNodo == alvo)
@@ -236,6 +233,8 @@ Nodo *verificarExistenciaNodo(Nodo *nodo, int alvo)
         else
             return verificarExistenciaNodo(nodo->filhoDireita, alvo);
     }
+    else
+        return NULL;
 };
 
 // construirNodo: Constrói o nodo colocando dados dentro do mesmo.
@@ -256,7 +255,7 @@ void construirNodo(Nodo **pRaiz, Nodo *nodo)
     }
 
     printf(" </> Inserindo nodo na árvore.\n");
-    nodo->nivelNodo = /* Função INSERCAO */ /* Função INSERCAO */ /* Função INSERCAO */ /* Função INSERCAO */ /* Função INSERCAO */ + 1;
+    nodo->nivelNodo = /* Função INSERCAO */ /* Função INSERCAO */ /* Função INSERCAO */ /* Função INSERCAO */ /* Função INSERCAO */ +1;
     printf(" </> Nodo inserido.\n");
 
     nodo->grauNodo = 0;
@@ -281,28 +280,25 @@ void construirNodo(Nodo **pRaiz, Nodo *nodo)
 void alterarDadosNodo(Nodo *nodo, short nivel)
 {
 
-    if (nodo != NULL)
+    if (nodo)
     {
+        alterarDadosNodo(nodo->filhoEsquerda, (nivel + 1));
+        alterarDadosNodo(nodo->filhoDireita, (nivel + 1));
 
         nodo->nivelNodo = nivel;
 
-        if (nodo->filhoEsquerda != NULL && nodo->filhoDireita != NULL)
+        if (nodo->filhoEsquerda && nodo->filhoDireita)
             nodo->grauNodo = 2;
 
-        else if (nodo->filhoEsquerda != NULL || nodo->filhoDireita != NULL)
+        else if (nodo->filhoEsquerda || nodo->filhoDireita)
             nodo->grauNodo = 1;
 
         else
             nodo->grauNodo = 0;
 
-        printf(" </> Calculando fator de balanceamento.\n");
-        nodo->fatorBalanceamento = /* Função FATORBALANCEAMENTO */ /* Função FATORBALANCEAMENTO */ /* Função FATORBALANCEAMENTO */ /* Função FATORBALANCEAMENTO */ /* Função FATORBALANCEAMENTO */
-        printf(" </> Fator calculado.\n");
+        nodo->fatorBalanceamento = fatorDeBalanceamento(nodo); /* FATORBALANCEAMENTO *//* FATORBALANCEAMENTO *//* FATORBALANCEAMENTO */
 
         nodo->alturaNodo = max(nodo->alturaEsquerda, nodo->alturaDireita) + 1;
-
-        alterarDadosNodo(nodo->filhoEsquerda, (nivel + 1));
-        alterarDadosNodo(nodo->filhoDireita, (nivel + 1));
     }
 
     return;
@@ -427,23 +423,23 @@ void balancearArvore(Nodo **pRaiz)
                 if (rotacao == -2)
                 {
                     pai->filhoEsquerda = /* Função RDE */ /* Função RDE */ /* Função RDE */ /* Função RDE */ /* Função RDE */
-                    printf(" </> RDE para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                        printf(" </> RDE para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
                 else if (rotacao == -1)
                 {
-                    pai->filhoEsquerda = /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */ 
-                    printf(" </> RSE para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                    pai->filhoEsquerda = /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */
+                        printf(" </> RSE para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
 
                 else if (rotacao == 1)
                 {
-                    pai->filhoEsquerda = /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */ 
-                    printf(" </> RSD para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                    pai->filhoEsquerda = /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */
+                        printf(" </> RSD para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
                 else
                 {
-                    pai->filhoEsquerda = /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */ 
-                    printf(" </> RDD para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                    pai->filhoEsquerda = /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */
+                        printf(" </> RDD para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
             }
             else if (lado == 1)
@@ -451,23 +447,23 @@ void balancearArvore(Nodo **pRaiz)
                 if (rotacao == -2)
                 {
                     pai->filhoDireita = /* Função RDE */ /* Função RDE */ /* Função RDE */ /* Função RDE */ /* Função RDE */
-                    printf(" </> RDE para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                        printf(" </> RDE para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
                 else if (rotacao == -1)
                 {
-                    pai->filhoDireita = /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */ 
-                    printf(" </> RSE para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                    pai->filhoDireita = /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */
+                        printf(" </> RSE para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
 
                 else if (rotacao == 1)
                 {
-                    pai->filhoDireita = /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */ 
-                    printf(" </> RSD para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                    pai->filhoDireita = /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */
+                        printf(" </> RSD para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
                 else
                 {
-                    pai->filhoDireita = /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */ 
-                    printf(" </> RDD para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                    pai->filhoDireita = /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */
+                        printf(" </> RDD para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
             }
         }
@@ -480,26 +476,28 @@ void balancearArvore(Nodo **pRaiz)
             if (rotacao == -2)
             {
                 *pRaiz = /* Função RDE */ /* Função RDE */ /* Função RDE */ /* Função RDE */ /* Função RDE */
-                printf(" </> RDE para %d que é a raiz.\n\n", alvo->numeroNodo);
+                    printf(" </> RDE para %d que é a raiz.\n\n", alvo->numeroNodo);
             }
             else if (rotacao == -1)
             {
-                *pRaiz = /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */ 
-                printf(" </> RSE para %d que é a raiz.\n\n", alvo->numeroNodo);
+                *pRaiz = /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */
+                    printf(" </> RSE para %d que é a raiz.\n\n", alvo->numeroNodo);
             }
 
             else if (rotacao == 1)
             {
-                *pRaiz = /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */ 
-                printf(" </> RSD para %d que é a raiz.\n\n", alvo->numeroNodo);
+                *pRaiz = /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */
+                    printf(" </> RSD para %d que é a raiz.\n\n", alvo->numeroNodo);
             }
             else
             {
-                *pRaiz = /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */ 
-                printf(" </> RDD para %d que é a raiz.\n\n", alvo->numeroNodo);
+                *pRaiz = /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */
+                    printf(" </> RDD para %d que é a raiz.\n\n", alvo->numeroNodo);
             }
         }
 
+        printf(" </> Rotação bem sucedido.\n");
+        printf(" </> Balanceamento completo.\n");
         printf(" </> Alterando dados do(s) nodo(s).\n");
         alterarDadosNodo((*pRaiz), 1);
         printf(" </> Dados alterados.\n\n\n");
@@ -508,10 +506,12 @@ void balancearArvore(Nodo **pRaiz)
         printf(" </> Não há nodo(s) desbalanceado(s).\n");
 };
 
-// removerNodo: Determina o nodo e a ser balanceado e seu efeito.
+// removerNodo: Determina o nodo e a ser removido.
 
 void removerNodo(Nodo **pRaiz)
 {
+    mostrarArvoreSimplificada((*pRaiz), (*pRaiz)->alturaNodo);
+
     Nodo *alvo = NULL;
     int numero;
     while (1)
@@ -529,22 +529,7 @@ void removerNodo(Nodo **pRaiz)
         break;
     }
 
-    Nodo *pai = NULL;
-    short lado;
-    printf(" </> Buscando pai do nodo.\n");
-    encontrarPaiNodo(&pai, &lado, alvo->numeroNodo, (*pRaiz));
-
-    if (pai)
-    {
-        printf(" </> Pai do nodo encontrado.\n");
-        if (lado == -1)
-            pai->filhoEsquerda = /* Função REMOCAO */ /* Função REMOCAO */ /* Função REMOCAO */ /* Função REMOCAO */ /* Função REMOCAO */
-        else
-            pai->filhoDireita = /* Função REMOCAO */ /* Função REMOCAO */ /* Função REMOCAO */ /* Função REMOCAO */ /* Função REMOCAO */
-    }
-    else
-        printf(" </> O nodo a ser removido é a raiz.\n");
-    (*pRaiz) = /* Função REMOCAO */ /* Função REMOCAO */ /* Função REMOCAO */ /* Função REMOCAO */ /* Função REMOCAO */
+    remover((*pRaiz), alvo->numeroNodo); /* REMOÇÃO *//* REMOÇÃO *//* REMOÇÃO */
 
     printf(" </> Remoção do nodo concluída.\n");
 
