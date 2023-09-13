@@ -1,14 +1,12 @@
 short fatorDeBalanceamento(Nodo *nodo)
 {
-    if nodo
-        ->filhoEsquerda
+    if (nodo->filhoEsquerda)
             nodo->alturaEsquerda = nodo->filhoEsquerda->alturaNodo;
     else
         nodo->alturaEsquerda = 0;
 
-    if nodo
-        ->filhoDireita
-            nodo->alturaEsquerda = nodo->filhoDireita->alturaNodo;
+    if (nodo->filhoDireita)
+            nodo->alturaDireita = nodo->filhoDireita->alturaNodo;
     else
         nodo->alturaDireita = 0;
 
