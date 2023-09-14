@@ -2,21 +2,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <locale.h>
 #include <math.h>
 
 #include "struct.h"
 #include "adicionais.c"
 
-// #include "insercao/insercao.c"
+#include "insercao/insercao.c"
 #include "fatorBalanceamento/fatorBalanceamento.c"
 // #include "balanceamentoEsquerda/rotacaoSimples.c"
 // #include "balanceamentoDireita/rotacaoSimples.c"
 // #include "balanceamentoEsquerda/rotacaoDupla.c"
 // #include "balanceamentoDireita/rotacaoDupla.c"
-#include "remocao/remocao.c"
-#include "visitacao/ordens.c"
+// #include "remocao/remocao.c"
+// #include "visitacao/ordens.c"
 #include "apresentacao/apresentacao.c"
 
 /* -------------------------------------------- */
@@ -45,13 +43,10 @@ void removerNodo(Nodo **pRaiz);
 
 /* -------------------------------------------- */
 
-// main: Função principal.
+// main: Funcao principal.
 
 int main()
 {
-
-    setlocale(LC_ALL, "Portuguese");
-
     short opcao = -1;
     Nodo *pRaiz = NULL;
     Nodo *novoNodo = NULL;
@@ -69,31 +64,31 @@ int main()
             if (!confirmacao())
                 continue;
 
-            printf(" </> Alocando nodo.\n");
+            printf(" <> Alocando nodo.\n");
             novoNodo = alocarNodo();
 
             if (novoNodo)
             {
-                printf(" </> Nodo alocado.\n");
-                printf(" </> Construindo nodo.\n\n");
+                printf(" <> Nodo alocado.\n");
+                printf(" <> Construindo nodo.\n\n");
                 construirNodo(&pRaiz, novoNodo);
-                printf(" </> Nodo construido.\n");
-                printf(" </> Alterando dados do(s) nodo(s).\n");
+                printf(" <> Nodo construido.\n");
+                printf(" <> Alterando dados do(s) nodo(s).\n");
                 alterarDadosNodo(pRaiz, 1);
-                printf(" </> Dados alterados.\n");
-                printf(" </> Verificando balanceamento.\n");
+                printf(" <> Dados alterados.\n");
+                printf(" <> Verificando balanceamento.\n");
                 balancearArvore(&pRaiz);
-                printf(" </> Verificação concluída.\n");
+                printf(" <> Verificacao concluida.\n");
             }
             else
-                printf(" </> Não há espaço de memória disponível!\n");
+                printf(" <> Nao ha espaco de memoria disponivel!\n");
 
             break;
 
         case 2:
 
             if (verificarArvoreVazia(pRaiz))
-                printf(" </> A árvore está vazia!\n");
+                printf(" <> A arvore esta vazia!\n");
             else
             {
                 if (!confirmacao())
@@ -103,12 +98,12 @@ int main()
 
                 if (!verificarArvoreVazia(pRaiz))
                 {
-                    printf(" </> Alterando dados do(s) nodo(s).\n");
+                    printf(" <> Alterando dados do(s) nodo(s).\n");
                     alterarDadosNodo(pRaiz, 1);
-                    printf(" </> Dados alterados.\n");
-                    printf(" </> Verificando balanceamento.\n");
+                    printf(" <> Dados alterados.\n");
+                    printf(" <> Verificando balanceamento.\n");
                     balancearArvore(&pRaiz);
-                    printf(" </> Verificação concluída.\n");
+                    printf(" <> Verificacao concluida.\n");
                 }
             }
 
@@ -117,20 +112,20 @@ int main()
         case 3:
 
             if (verificarArvoreVazia(pRaiz))
-                printf(" </> A árvore está vazia!\n");
+                printf(" <> A arvore esta vazia!\n");
             else
             {
-                /* VISITAÇÃO *//* VISITAÇÃO *//* VISITAÇÃO */
-                printf(" </> Pré-ordem: ");
-                preOrdem(pRaiz);
+                /* Funcao VISITACAO */
+                printf(" <> Pre-ordem: ");
+                // preOrdem(pRaiz);
                 printf("\n");
 
-                printf(" </> Em-ordem.: ");
-                emOrdem(pRaiz);
+                printf(" <> Em-ordem.: ");
+                // emOrdem(pRaiz);
                 printf("\n");
 
-                printf(" </> Pós-ordem: ");
-                posOrdem(pRaiz);
+                printf(" <> Pos-ordem: ");
+                // posOrdem(pRaiz);
                 printf("\n\n\n");
             }
 
@@ -139,7 +134,7 @@ int main()
         case 5:
 
             if (verificarArvoreVazia(pRaiz))
-                printf(" </> A árvore está vazia!\n");
+                printf(" <> A arvore esta vazia!\n");
             else
                 mostrarArvoreSimplificada(pRaiz, pRaiz->alturaNodo);
 
@@ -149,21 +144,21 @@ int main()
 
             if (verificarArvoreVazia(pRaiz))
 
-                printf(" </> A árvore está vazia!\n");
+                printf(" <> A arvore esta vazia!\n");
 
             else
             {
 
                 printf("----------------------------------------------------------------");
                 for (int i = 1; i < (pRaiz->alturaNodo + 2); i++)
-                    printf("------");
+                    printf("-------");
                 printf("-\n");
 
-                printf("| Número | Nível | Altura | Grau | Fator | Esquerda | Direita |\n");
+                printf("| Numero | Nivel | Altura | Grau | Fator | Esquerda | Direita |\n");
 
                 printf("                                                                ");
                 for (int i = 1; i < (pRaiz->alturaNodo + 2); i++)
-                    printf("      ");
+                    printf("       ");
                 printf("|\n");
 
                 mostrarArvoreDetalhada(pRaiz, (pRaiz->alturaNodo + 1));
@@ -171,7 +166,7 @@ int main()
 
                 printf("----------------------------------------------------------------");
                 for (int i = 1; i < (pRaiz->alturaNodo + 2); i++)
-                    printf("------");
+                    printf("-------");
                 printf("-\n\n\n");
             }
 
@@ -181,9 +176,9 @@ int main()
 
             if (pRaiz)
             {
-                printf(" </> Liberando espaço de memória preenchido.\n");
+                printf(" <> Liberando espaco de memoria preenchido.\n");
                 limparMemoria(pRaiz);
-                printf(" </> Espaço liberado.\n");
+                printf(" <> Espaco liberado.\n");
             }
             encerrarPrograma();
 
@@ -192,9 +187,9 @@ int main()
     }
 
     return 0;
-}
+};
 
-// verificarArvoreVazia: Verifica se a árvore está vazia.
+// verificarArvoreVazia: Verifica se a arvore esta vazia.
 
 short verificarArvoreVazia(Nodo *nodo)
 {
@@ -206,7 +201,7 @@ short verificarArvoreVazia(Nodo *nodo)
         return 1;
 };
 
-// alocarNodo: Verifica se há espaço de memória e aloca um nodo.
+// alocarNodo: Verifica se ha espaco de memoria e aloca um nodo.
 
 Nodo *alocarNodo()
 {
@@ -216,7 +211,7 @@ Nodo *alocarNodo()
     return ponteiroNovo;
 };
 
-// verificarExistenciaNodo: Verifica se existe um nó com o valor passado pela variável alvo.
+// verificarExistenciaNodo: Verifica se existe um no com o valor passado pela variavel alvo.
 
 Nodo *verificarExistenciaNodo(Nodo *nodo, int alvo)
 {
@@ -237,25 +232,24 @@ Nodo *verificarExistenciaNodo(Nodo *nodo, int alvo)
         return NULL;
 };
 
-// construirNodo: Constrói o nodo colocando dados dentro do mesmo.
+// construirNodo: Constroi o nodo colocando dados dentro do mesmo.
 
 void construirNodo(Nodo **pRaiz, Nodo *nodo)
 {
-
     while (1)
     {
-        printf(" </> Informe um número de até 4 dígitos para o nodo: ");
+        printf(" </> Informe um numero de ate 4 digitos para o nodo: ");
         scanf("%d", &nodo->numeroNodo);
         printf("\n");
 
         if (verificarExistenciaNodo(*pRaiz, nodo->numeroNodo))
-            printf(" </> Já existe um nodo com este número!\n\n");
+            printf(" </> Ja existe um nodo com este numero!\n\n");
         else
             break;
     }
 
-    printf(" </> Inserindo nodo na árvore.\n");
-    nodo->nivelNodo = /* Função INSERCAO */ /* Função INSERCAO */ /* Função INSERCAO */ /* Função INSERCAO */ /* Função INSERCAO */ +1;
+    printf(" </> Inserindo nodo na arvore.\n");
+    nodo->nivelNodo = inserirNodo(nodo, pRaiz, (*pRaiz)) + 1; /* Funcao INSERCAO */
     printf(" </> Nodo inserido.\n");
 
     nodo->grauNodo = 0;
@@ -275,11 +269,10 @@ void construirNodo(Nodo **pRaiz, Nodo *nodo)
     return;
 };
 
-// alterarDadosNodo: Irá alterar os dados de cada nodo.
+// alterarDadosNodo: Vai alterar os dados de cada nodo.
 
 void alterarDadosNodo(Nodo *nodo, short nivel)
 {
-
     if (nodo)
     {
         alterarDadosNodo(nodo->filhoEsquerda, (nivel + 1));
@@ -289,14 +282,12 @@ void alterarDadosNodo(Nodo *nodo, short nivel)
 
         if (nodo->filhoEsquerda && nodo->filhoDireita)
             nodo->grauNodo = 2;
-
         else if (nodo->filhoEsquerda || nodo->filhoDireita)
             nodo->grauNodo = 1;
-
         else
             nodo->grauNodo = 0;
 
-        nodo->fatorBalanceamento = fatorDeBalanceamento(nodo); /* FATORBALANCEAMENTO *//* FATORBALANCEAMENTO *//* FATORBALANCEAMENTO */
+        nodo->fatorBalanceamento = fatorDeBalanceamento(nodo); /* FATORBALANCEAMENTO */
 
         nodo->alturaNodo = max(nodo->alturaEsquerda, nodo->alturaDireita) + 1;
     }
@@ -308,12 +299,10 @@ void alterarDadosNodo(Nodo *nodo, short nivel)
 
 void buscarNodoDesbalanceado(Nodo **alvo, short *rotacao, Nodo *nodo)
 {
-
     if (nodo)
     {
         if (nodo->fatorBalanceamento == -2)
         {
-
             if (nodo->filhoEsquerda->fatorBalanceamento == -2 || nodo->filhoEsquerda->fatorBalanceamento == 2)
                 buscarNodoDesbalanceado(alvo, rotacao, nodo->filhoEsquerda);
             else
@@ -329,7 +318,6 @@ void buscarNodoDesbalanceado(Nodo **alvo, short *rotacao, Nodo *nodo)
         }
         else if (nodo->fatorBalanceamento == 2)
         {
-
             if (nodo->filhoDireita->fatorBalanceamento == -2 || nodo->filhoDireita->fatorBalanceamento == 2)
                 buscarNodoDesbalanceado(alvo, rotacao, nodo->filhoDireita);
             else
@@ -357,27 +345,22 @@ void buscarNodoDesbalanceado(Nodo **alvo, short *rotacao, Nodo *nodo)
 
 void encontrarPaiNodo(Nodo **pai, short *lado, int numero, Nodo *nodo)
 {
-
     if (nodo->numeroNodo != numero)
     {
-
         if (nodo->filhoEsquerda->numeroNodo == numero)
         {
-
             (*pai) = nodo;
             *lado = -1;
             return;
         }
         else if (nodo->filhoDireita->numeroNodo == numero)
         {
-
             (*pai) = nodo;
             *lado = 1;
             return;
         }
         else
         {
-
             if (nodo->numeroNodo > numero)
                 return encontrarPaiNodo(pai, lado, numero, nodo->filhoEsquerda);
             else
@@ -392,7 +375,7 @@ void encontrarPaiNodo(Nodo **pai, short *lado, int numero, Nodo *nodo)
     }
 };
 
-// balancearArvore: Irá chamar a rotação para balancear a árvore.
+// balancearArvore: Vai chamar a rotacao para balancear a arvore.
 
 void balancearArvore(Nodo **pRaiz)
 {
@@ -416,97 +399,96 @@ void balancearArvore(Nodo **pRaiz)
             printf(" </> Pai....: %d.\n", pai->numeroNodo);
             printf(" </> Alvo...: %d.\n", alvo->numeroNodo);
             printf(" </> Lado...: %hd.\n", lado);
-            printf(" </> Rotação: %hd.\n", rotacao);
+            printf(" </> Rotacao: %hd.\n", rotacao);
 
             if (lado == -1)
             {
                 if (rotacao == -2)
                 {
-                    pai->filhoEsquerda = /* Função RDE */ /* Função RDE */ /* Função RDE */ /* Função RDE */ /* Função RDE */
-                        printf(" </> RDE para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                    //pai->filhoEsquerda = /* Funcao RDE */
+                        printf(" </> RDE para %d que e filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
                 else if (rotacao == -1)
                 {
-                    pai->filhoEsquerda = /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */
-                        printf(" </> RSE para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                    //pai->filhoEsquerda = /* Funcao RSE */
+                        printf(" </> RSE para %d que e filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
-
                 else if (rotacao == 1)
                 {
-                    pai->filhoEsquerda = /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */
-                        printf(" </> RSD para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                    //pai->filhoEsquerda = /* Funcao RSD */
+                        printf(" </> RSD para %d que e filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
                 else
                 {
-                    pai->filhoEsquerda = /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */
-                        printf(" </> RDD para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                    //pai->filhoEsquerda = /* Funcao RDD */
+                        printf(" </> RDD para %d que e filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
             }
             else if (lado == 1)
             {
                 if (rotacao == -2)
                 {
-                    pai->filhoDireita = /* Função RDE */ /* Função RDE */ /* Função RDE */ /* Função RDE */ /* Função RDE */
-                        printf(" </> RDE para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                    //pai->filhoDireita = /* Funcao RDE */
+                        printf(" </> RDE para %d que e filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
                 else if (rotacao == -1)
                 {
-                    pai->filhoDireita = /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */
-                        printf(" </> RSE para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                    //pai->filhoDireita = /* Funcao RSE */
+                        printf(" </> RSE para %d que e filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
-
                 else if (rotacao == 1)
                 {
-                    pai->filhoDireita = /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */
-                        printf(" </> RSD para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                    //pai->filhoDireita = /* Funcao RSD */
+                        printf(" </> RSD para %d que e filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
                 else
                 {
-                    pai->filhoDireita = /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */
-                        printf(" </> RDD para %d que é filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
+                    //pai->filhoDireita = /* Funcao RDD */
+                        printf(" </> RDD para %d que e filho de %d.\n\n", alvo->numeroNodo, pai->numeroNodo);
                 }
             }
         }
         else
         {
-            printf(" </> O nodo desbalanceado é a raiz.\n\n");
+            printf(" </> O nodo desbalanceado e a raiz.\n\n");
             printf(" </> Raiz...: %d.\n", alvo->numeroNodo);
-            printf(" </> Rotação: %hd.\n", rotacao);
+            printf(" </> Rotacao: %hd.\n", rotacao);
 
             if (rotacao == -2)
             {
-                *pRaiz = /* Função RDE */ /* Função RDE */ /* Função RDE */ /* Função RDE */ /* Função RDE */
-                    printf(" </> RDE para %d que é a raiz.\n\n", alvo->numeroNodo);
+                //(*pRaiz) = /* Funcao RDE */
+                    printf(" </> RDE para %d que e a raiz.\n\n", alvo->numeroNodo);
             }
             else if (rotacao == -1)
             {
-                *pRaiz = /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */ /* Função RSE */
-                    printf(" </> RSE para %d que é a raiz.\n\n", alvo->numeroNodo);
+                //(*pRaiz) = /* Funcao RSE */
+                    printf(" </> RSE para %d que e a raiz.\n\n", alvo->numeroNodo);
             }
-
             else if (rotacao == 1)
             {
-                *pRaiz = /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */ /* Função RSD */
-                    printf(" </> RSD para %d que é a raiz.\n\n", alvo->numeroNodo);
+                //(*pRaiz) = /* Funcao RSD */
+                    printf(" </> RSD para %d que e a raiz.\n\n", alvo->numeroNodo);
             }
             else
             {
-                *pRaiz = /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */ /* Função RDD */
-                    printf(" </> RDD para %d que é a raiz.\n\n", alvo->numeroNodo);
+                //(*pRaiz) = /* Funcao RDD */
+                    printf(" </> RDD para %d que e a raiz.\n\n", alvo->numeroNodo);
             }
         }
 
-        printf(" </> Rotação bem sucedido.\n");
+        printf(" </> Rotacao bem sucedido.\n");
         printf(" </> Balanceamento completo.\n");
         printf(" </> Alterando dados do(s) nodo(s).\n");
         alterarDadosNodo((*pRaiz), 1);
         printf(" </> Dados alterados.\n\n\n");
     }
     else
-        printf(" </> Não há nodo(s) desbalanceado(s).\n");
+        printf(" </> Nao ha nodo(s) desbalanceado(s).\n");
+
+    return;
 };
 
-// removerNodo: Determina o nodo e a ser removido.
+// removerNodo: Determina o nodo a ser removido.
 
 void removerNodo(Nodo **pRaiz)
 {
@@ -516,22 +498,22 @@ void removerNodo(Nodo **pRaiz)
     int numero;
     while (1)
     {
-        printf(" </> Informe o número do nodo: ");
+        printf(" <> Informe o numero do nodo: ");
         scanf("%d", &numero);
         printf("\n");
-        printf(" </> Buscando nodo.\n");
+        printf(" <> Buscando nodo.\n");
         alvo = verificarExistenciaNodo((*pRaiz), numero);
 
         if (!alvo)
-            printf(" </> Não existe um nodo com este número!\n\n");
+            printf(" <> Nao existe um nodo com este numero!\n\n");
         else
-            printf(" </> Nodo encontrado.\n");
+            printf(" <> Nodo encontrado.\n");
         break;
     }
 
-    remover((*pRaiz), alvo->numeroNodo); /* REMOÇÃO *//* REMOÇÃO *//* REMOÇÃO */
+    // remover((*pRaiz), alvo->numeroNodo); /* Funca REMOCAO */
 
-    printf(" </> Remoção do nodo concluída.\n");
+    printf(" <> Remocao do nodo concluida.\n");
 
     return;
 };
