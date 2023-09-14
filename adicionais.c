@@ -58,10 +58,10 @@ void menu(short *opcao)
         }
 
         opcaoInexistente();
-    };
+    }
 
     return;
-}
+};
 
 // confirmacao: Verifica se o usuario deseja proseguir com a acao que escolheu.
 
@@ -88,7 +88,7 @@ short confirmacao()
     };
 
     return confirmacao;
-}
+};
 
 // opcaoInexistente: Alerta que a opcao informada nao existe.
 
@@ -105,7 +105,7 @@ void opcaoInexistente()
 short max(short a, short b)
 {
     return (a > b) ? a : b;
-}
+};
 
 // limparMemoria: Libera os espacos de memoria reservados para os nodos da arvore.
 

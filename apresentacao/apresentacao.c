@@ -1,14 +1,14 @@
 /* ------------  Funcionalidades  ------------ */
 
-short mostrarArvoreSimplificada(Nodo *nodo, short altura);
+void mostrarArvoreSimplificada(Nodo *nodo, short altura);
 
-short mostrarArvoreDetalhada(Nodo *nodo, short altura);
+void mostrarArvoreDetalhada(Nodo *nodo, short altura);
 
 /* ------------------------------------------- */
 
 // mostrarArvoreSimplificada: Implime a arvore ao usuario mostrando os nodos e seus fatores.
 
-short mostrarArvoreSimplificada(Nodo *nodo, short altura)
+void mostrarArvoreSimplificada(Nodo *nodo, short altura)
 {
 
     if (nodo == NULL)
@@ -37,12 +37,12 @@ short mostrarArvoreSimplificada(Nodo *nodo, short altura)
         mostrarArvoreSimplificada(nodo->filhoEsquerda, (altura - 1));
     }
 
-    return 0;
-}
+    return;
+};
 
 // mostrarArvoreDetalhada: Implime a arvore em barras mostrando os dados dos nodos.
 
-short mostrarArvoreDetalhada(Nodo *nodo, short altura)
+void mostrarArvoreDetalhada(Nodo *nodo, short altura)
 {
 
     if (nodo != NULL)
@@ -74,5 +74,5 @@ short mostrarArvoreDetalhada(Nodo *nodo, short altura)
         mostrarArvoreDetalhada(nodo->filhoDireita, altura);
     }
 
-    return 0;
-}
+    return;
+};
