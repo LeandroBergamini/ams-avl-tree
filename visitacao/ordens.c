@@ -1,5 +1,5 @@
-void preOrdem (nodo *endNodo){
-if (nodo != NULL)
+void preOrdem (Nodo *endNodo){
+if (endNodo != NULL)
 {
     printf("%d", endNodo->numeroNodo);
     preOrdem(endNodo->filhoEsquerda);
@@ -8,8 +8,8 @@ if (nodo != NULL)
 return;
 }
 
-void emOrdem (nodo *endNodo){
-if (nodo != NULL)
+void emOrdem (Nodo *endNodo){
+if (endNodo != NULL)
 {
     emOrdem(endNodo->filhoEsquerda);
     printf("%d", endNodo->numeroNodo);
@@ -18,8 +18,8 @@ if (nodo != NULL)
 return; 
 }
 
-void posOrdem (nodo *endNodo){
-if (nodo != NULL)
+void posOrdem (Nodo *endNodo){
+if (endNodo != NULL)
 {
     posOrdem(endNodo->filhoEsquerda);
     posOrdem(endNodo->filhoDireita);
