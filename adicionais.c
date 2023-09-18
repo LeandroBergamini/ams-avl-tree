@@ -4,9 +4,9 @@ void menu(short *opcao);
 
 short confirmacao();
 
-short max(short a, short b);
-
 void opcaoInexistente();
+
+short max(short a, short b);
 
 void limparMemoria(Nodo *nodo);
 
@@ -14,7 +14,7 @@ void encerrarPrograma();
 
 /* -------------------------------------------- */
 
-// menu: Imprime as funcionalidades ao usuário.
+// menu: Imprime as funcionalidades ao usuario.
 
 void menu(short *opcao)
 {
@@ -25,12 +25,12 @@ void menu(short *opcao)
         printf("\n-------------  MENU  -------------\n\n");
         printf("    [1] Inserir   Nodo\n");
         printf("    [2] Remover   Nodo\n");
-        printf("    [3] Visitar   Árvore\n");
-        printf("    [4] Mostrar   Árvore\n");
+        printf("    [3] Visitar   Arvore\n");
+        printf("    [4] Mostrar   Arvore\n");
         printf("    [0] Encerrar  Software\n\n");
         printf("----------------------------------\n\n");
 
-        printf(" </> Informe o número da opção: ");
+        printf(" </> Informe o numero da opcao: ");
         scanf("%hd", opcao);
         printf("\n");
 
@@ -46,7 +46,7 @@ void menu(short *opcao)
             printf("    [0] Voltar\n\n");
             printf("----------------------------------\n\n");
 
-            printf(" </> Informe o número da opção: ");
+            printf(" </> Informe o numero da opcao: ");
             scanf("%hd", opcao);
             printf("\n");
 
@@ -58,12 +58,12 @@ void menu(short *opcao)
         }
 
         opcaoInexistente();
-    };
+    }
 
     return;
-}
+};
 
-// confirmacao: Verifica se o usuário deseja proseguir com a ação que escolheu.
+// confirmacao: Verifica se o usuario deseja proseguir com a acao que escolheu.
 
 short confirmacao()
 {
@@ -72,12 +72,12 @@ short confirmacao()
     {
 
         printf("----------------------------------\n\n");
-        printf(" </> Deseja realmente seguir com está ação?\n\n");
+        printf(" </> Deseja realmente seguir com esta acao?\n\n");
         printf("    [1] Sim\n");
-        printf("    [0] Não\n\n");
+        printf("    [0] Nao\n\n");
         printf("----------------------------------\n\n");
 
-        printf(" </> Informe o número da opção: ");
+        printf(" </> Informe o numero da opcao: ");
         scanf("%hd", &confirmacao);
         printf("\n");
 
@@ -88,31 +88,31 @@ short confirmacao()
     };
 
     return confirmacao;
-}
+};
+
+// opcaoInexistente: Alerta que a opcao informada nao existe.
+
+void opcaoInexistente()
+{
+
+    printf(" </> A opcao informada nao existe!\n\n\n");
+
+    return;
+};
 
 // max: Encontra o maior valor passado por parametro.
 
 short max(short a, short b)
 {
     return (a > b) ? a : b;
-}
-
-// opcaoInexistente: Alerta que a opção informada não existe.
-
-void opcaoInexistente()
-{
-
-    printf(" </> A opção informada não existe!\n\n\n");
-
-    return;
 };
 
-// limparMemoria: Libera os espaços de memória reservados para os nodos da árvore.
+// limparMemoria: Libera os espacos de memoria reservados para os nodos da arvore.
 
 void limparMemoria(Nodo *nodo)
 {
 
-    if (nodo != NULL)
+    if (nodo)
     {
         limparMemoria(nodo->filhoEsquerda);
         limparMemoria(nodo->filhoDireita);

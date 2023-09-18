@@ -1,14 +1,14 @@
 /* ------------  Funcionalidades  ------------ */
 
-short mostrarArvoreSimplificada(Nodo *nodo, short altura);
+void mostrarArvoreSimplificada(Nodo *nodo, short altura);
 
-short mostrarArvoreDetalhada(Nodo *nodo, short altura);
+void mostrarArvoreDetalhada(Nodo *nodo, short altura);
 
 /* ------------------------------------------- */
 
-// mostrarArvoreSimplificada: Implime a árvore ao usuário mostrando os nodos e seus fatores.
+// mostrarArvoreSimplificada: Implime a arvore ao usuario mostrando os nodos e seus fatores.
 
-short mostrarArvoreSimplificada(Nodo *nodo, short altura)
+void mostrarArvoreSimplificada(Nodo *nodo, short altura)
 {
 
     if (nodo == NULL)
@@ -29,20 +29,20 @@ short mostrarArvoreSimplificada(Nodo *nodo, short altura)
 
         for (int i = 0; i < nodo->nivelNodo; i++)
         {
-            printf("          ");
+            printf("           ");
         }
 
-        printf(" (%5d)%2hd\n\n", nodo->numeroNodo, nodo->fatorBalanceamento);
+        printf(" (%5d)%2hd \n\n", nodo->numeroNodo, nodo->fatorBalanceamento);
 
         mostrarArvoreSimplificada(nodo->filhoEsquerda, (altura - 1));
     }
 
-    return 0;
-}
+    return;
+};
 
-// mostrarArvoreDetalhada: Implime a árvore em barras mostrando os dados dos nodos.
+// mostrarArvoreDetalhada: Implime a arvore em barras mostrando os dados dos nodos.
 
-short mostrarArvoreDetalhada(Nodo *nodo, short altura)
+void mostrarArvoreDetalhada(Nodo *nodo, short altura)
 {
 
     if (nodo != NULL)
@@ -52,21 +52,21 @@ short mostrarArvoreDetalhada(Nodo *nodo, short altura)
 
         for (int i = 1; i < nodo->nivelNodo; i++)
         {
-            printf("      ");
+            printf("       ");
         }
 
-        printf("%5d ", nodo->numeroNodo);
+        printf(" %5d ", nodo->numeroNodo);
 
         for (short i = nodo->nivelNodo; i < altura; i++)
         {
-            printf("------");
+            printf("-------");
         }
         printf("|\n");
 
         printf("                                                                ");
         for (int i = 1; i < (altura + 1); i++)
         {
-            printf("      ");
+            printf("       ");
         }
         printf("|\n");
 
@@ -74,5 +74,5 @@ short mostrarArvoreDetalhada(Nodo *nodo, short altura)
         mostrarArvoreDetalhada(nodo->filhoDireita, altura);
     }
 
-    return 0;
-}
+    return;
+};
