@@ -1,9 +1,7 @@
-Nodo *rse(Nodo *nodo)
+Nodo *rotacaoSimplesEsquerda(Nodo *nodo)
 {
     Nodo *auxiliar = nodo->filhoDireita;
     nodo->filhoDireita = backup->filhoEsquerda;
-    backup->filhoEsquerda-> = nodo;
+    backup->filhoEsquerda = nodo;
     return auxiliar;
 }
-
-// Rotação Simples a Esquerda
