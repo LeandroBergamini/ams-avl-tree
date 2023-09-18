@@ -16,7 +16,7 @@ Nodo *remover(Nodo *pRaiz, int chave)
         if (pRaiz->numeroNodo == chave)
         {
 
-            if (pRaiz->grauNodo = 0)
+            if (pRaiz->grauNodo == 0)
             {
 
                 free(pRaiz);
@@ -29,7 +29,7 @@ Nodo *remover(Nodo *pRaiz, int chave)
             else
             {
 
-                if (pRaiz->grauNodo = 2)
+                if (pRaiz->grauNodo == 2)
                 {
 
                     Nodo *aux = pRaiz->filhoEsquerda;
